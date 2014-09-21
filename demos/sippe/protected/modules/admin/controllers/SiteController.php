@@ -2,7 +2,7 @@
 
 class SiteController extends Controller
 {
-	public $layout='column1';
+	public $layout='blank';
 
 	/**
 	 * Declares class-based actions.
@@ -58,9 +58,6 @@ class SiteController extends Controller
 		if(isset($_POST['LoginForm1']))
 		{
 			$model->attributes=$_POST['LoginForm1'];
-			var_dump(Yii::app()->controller->module->getComponent('adminUser')->returnUrl);
-			var_dump($model->validate());
-			var_dump($model->login());
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 				$this->redirect(Yii::app()->controller->module->getComponent('adminUser')->returnUrl);
@@ -75,8 +72,8 @@ class SiteController extends Controller
 	 */
 	public function actionLogout()
 	{
-		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
+		Yii::app()->controller->module->getComponent('adminUser')->logout();
+		$this->redirect(Yii::app()->createUrl('admin/default/index'));		
 	}
 
 

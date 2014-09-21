@@ -16,7 +16,6 @@ class CAdminAccessControlFilter extends CAccessControlFilter
         foreach($this->getRules() as $rule)  
         {  
             $allow = $rule->isUserAllowed($user,$filterChain->controller,$filterChain->action,$ip,$verb);
-            var_dump($allow);   
             if(($allow)>0) // allowed  
                 break;  
             else if($allow<0) // denied  

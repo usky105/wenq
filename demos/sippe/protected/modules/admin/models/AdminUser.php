@@ -1,6 +1,6 @@
 <?php
 
-class User extends CActiveRecord
+class AdminUser extends CActiveRecord
 {
 	/**
 	 * The followings are the available columns in table 'tbl_user':
@@ -27,7 +27,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{user}}';
+		return '{{adminuser}}';
 	}
 
 	public function primaryKey()
@@ -42,19 +42,6 @@ class User extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		/*return array(
-			array('username, password, email', 'required', "message"=>"用户名,密码,邮箱不能为空"),
-			array('username, password, email', 'length', 'max'=>128),
-			array("password2","compare","compareAttribute"=>"password","message"=>"两次密码不一致"),  
-			array("email","email","allowEmpty"=>false,"message"=>"邮箱格式不正确"), 
-			array('profile', 'safe'),
-			array('sex', 'safe'),
-			array('preferer', 'safe'),			
-			array('role', 'in', 'range'=>array(1,2,3,4), "message"=>"人物选择错误"),
-			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
-		);*/
-
-
 		return array(
 			array('user_name,password, email', 'required',"message"=>"用户名,密码,邮箱不能为空"),
 			array('id, sex, address_id, visit_count, flag', 'numerical', 'integerOnly'=>true),
@@ -78,16 +65,6 @@ class User extends CActiveRecord
 		$password = $this->password;
 		$this->password = $this->hashPassword($password);
 	}
-
-
-	/*public function validateName()
-	{
-		$n=self::model()->count("user_name = :username", array(":username"=>$this->user_name));
-		if($n != 0) {
-			$this->addError('user_name','用户名重复.'.$this->user_name.$n);
-		}		
-	}*/
-
 
 	/**
 	 * @return array relational rules.
