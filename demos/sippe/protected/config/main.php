@@ -36,6 +36,8 @@ return array(
 	// application components
 	'components'=>array(
 		'user'=>array(
+			'class'=>'WebUser',//这个WebUser是继承CwebUser
+			'stateKeyPrefix'=>'member',//这个是设置前台session的前缀
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),

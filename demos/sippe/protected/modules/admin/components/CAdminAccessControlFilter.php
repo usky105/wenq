@@ -1,4 +1,5 @@
 <?php
+
 class CAdminAccessControlFilter extends CAccessControlFilter  
 {  
     protected function preFilter($filterChain)  
@@ -6,21 +7,28 @@ class CAdminAccessControlFilter extends CAccessControlFilter
         $app=Yii::app();  
         $request=$app->getRequest();  
         $user = Yii::app()->controller->module->getComponent('adminUser');  
+
+       
+
         $verb=$request->getRequestType();  
         $ip=$request->getUserHostAddress();  
 
         foreach($this->getRules() as $rule)  
         {  
-            if(($allow=$rule->isUserAllowed($user,$filterChain->controller,$filterChain->action,$ip,$verb))>0) // allowed  
+            $allow = $rule->isUserAllowed($user,$filterChain->controller,$filterChain->action,$ip,$verb);
+            var_dump($allow);   
+            if(($allow)>0) // allowed  
                 break;  
             else if($allow<0) // denied  
             {  
-                $this->accessDenied($user);  
+                $message = "";
+                $this->accessDenied($user,$message);  
                 return false;  
             }  
         }  
         return true;  
     }  
 } 
+
 
 ?>
