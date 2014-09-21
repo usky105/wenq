@@ -118,4 +118,22 @@ class GoodsType extends CActiveRecord
 		    return false;
 		}
 	}
+
+	/**
+	 * Loads the lookup items for the specified type from the database.
+	 * @param string the item type
+	 */
+	public static function loadItems()
+	{
+		$_items=array();
+		$models=self::model()->findAll();		
+
+		foreach($models as $model)
+		{
+			$_items[$model->cat_id]=$model->cat_name;
+		}
+		return $_items;			
+	}
+
+
 }

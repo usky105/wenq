@@ -31,8 +31,6 @@ class GoodsTypeController extends AdminController
 				$this->redirect(array('goodsType/admin'));
 		}
 
-
-
 		$this->render('create',array(
 			'model'=>$model,
 		));

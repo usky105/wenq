@@ -72,6 +72,7 @@ class Goods extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('goods_desc, cat_id', 'required'),
+			array('cat_id', 'numerical', 'min'=>1 ),
 			array(' brand_id, goods_number, warn_number, is_real, is_on_sale, is_alone_sale, is_shipping, sort_order, is_delete, is_best, is_new, is_hot, is_promote, bonus_type_id, goods_type, give_integral, rank_integral, suppliers_id, is_check', 'numerical', 'integerOnly'=>true),
 			array('goods_sn, goods_name_style', 'length', 'max'=>60),
 			array('goods_name', 'length', 'max'=>120),

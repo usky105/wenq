@@ -20,7 +20,8 @@ class AdminModule extends CWebModule
 	                'class' => 'CAdminWebUser',  
 	                'stateKeyPrefix'=>'admin',
 	                'allowAutoLogin' => false,  
-	        )  
+	        ) 
+
 		)); 
 	}
 

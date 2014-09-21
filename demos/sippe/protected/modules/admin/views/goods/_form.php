@@ -21,10 +21,30 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'cat_id'); ?>		
-		<?php echo $form->textField($model,'cat_id',array('size'=>60,'maxlength'=>60,'value'=> (!empty($model_type) ? $model_type->category_id : '')  )); ?>
+		<?php echo $form->labelEx($model,'cat_id'); ?>	
+		<?php 
+		//$data = array_merge(array(0=>"选择一个类别"),GoodsType::loadItems());
+		$data = GoodsCategory::loadItems();
+		$new_data = array();
+		$new_data[0] = "选择一个类别";
+		foreach ($data as $key => $value) {
+			$new_data[$key] = $value;
+		}
+
+		$selected_index = !empty($model_type) ? $model_type->category_id : 0;
+		$options = array(
+			'options'=>array(
+			$selected_index=>array(
+				'selected'=>'selected'
+			)))
+		?>
+		<?php echo $form->dropDownList($model,'cat_id',$new_data,$options); ?>	
 		<?php echo $form->error($model,'cat_id'); ?>
-	</div>	
+	</div>
+
+
+
+
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'goods_sn'); ?>

@@ -71,22 +71,22 @@ class GoodsCategoryController extends AdminController
 	public function actionCreate()
 	{
 		$model=new GoodsCategory;
-
 		$type_id = Yii::app()->request->getParam("type_id");
-		$model_type = array();		
+		$model_type = array();
+		$param = array();		
 		
 		if(!is_null($type_id)) {
-			$model_type = GoodsType::model()->findByPk($type_id); 	
-			
+			$model_type = GoodsType::model()->findByPk($type_id); 
+			$param = array('type_id'=>$type_id);	
 		}
 
-
+		$redirect = array_merge(array('goodsCategory/admin'),$param);
 
 		if(isset($_POST['GoodsCategory']))
 		{
 			$model->attributes=$_POST['GoodsCategory'];			
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->category_id));
+				$this->redirect($redirect);
 		}
 
 		$this->render('create',array(

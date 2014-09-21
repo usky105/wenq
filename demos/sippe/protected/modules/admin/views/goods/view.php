@@ -18,6 +18,8 @@ $this->menu=array(
 
 <h1>View Goods #<?php echo $model->goods_id; ?></h1>
 
+<a href="<?php echo Yii::app()->createURL("/admin/goods/admin",array("cat_id"=>$model->cat_id)) ?>">返回产品列表</a>
+
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(

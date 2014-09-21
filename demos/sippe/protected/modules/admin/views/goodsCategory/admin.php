@@ -33,7 +33,11 @@ You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&g
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
 <p>
-<?php if(!empty($model_type)) {echo $model_type->cat_name;} ?>
+<?php 
+$params = array();
+if(!empty($model_type)) 
+	{echo $model_type->cat_name; $params=array("type_id"=>$model_type->cat_id); } 
+?>
 </p>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
@@ -43,7 +47,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<a href="<?php echo  Yii::app()->createURL("/admin/GoodsCategory/create"); ?>">Create New GoodsCategory</a>
+<a href="<?php echo  Yii::app()->createURL("/admin/GoodsCategory/create",$params); ?>">Create New GoodsCategory</a>
 
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(

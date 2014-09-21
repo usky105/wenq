@@ -37,6 +37,7 @@ class GoodsCategory extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('type_id', 'required'),
+			array('type_id', 'numerical', 'min'=>1 ),
 			array('enabled, type_id', 'numerical', 'integerOnly'=>true),
 			array('category_name', 'length', 'max'=>60),
 			// The following rule is used by search().
@@ -121,5 +122,21 @@ class GoodsCategory extends CActiveRecord
 		}else{ 
 		    return false;
 		}
+	}
+
+	/**
+	 * Loads the lookup items for the specified type from the database.
+	 * @param string the item type
+	 */
+	public static function loadItems()
+	{
+		$_items=array();
+		$models=self::model()->findAll();		
+
+		foreach($models as $model)
+		{
+			$_items[$model->category_id]=$model->category_name;
+		}
+		return $_items;			
 	}
 }
